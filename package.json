@@ -1,0 +1,24 @@
+{
+  "name": "cnpjoptantes",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/GabrielMarRib/ConsultarCNPJOptantes-csv#readme",
+  "bugs": {
+    "url": "https://github.com/GabrielMarRib/ConsultarCNPJOptantes-csv/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabrielMarRib/ConsultarCNPJOptantes-csv.git"
+  },
+  "license": "ISC",
+  "author": "Gabriel MR",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "fast-csv": "^5.0.5"
+  }
+}
