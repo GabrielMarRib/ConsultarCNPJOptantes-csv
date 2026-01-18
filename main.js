@@ -3,14 +3,14 @@ const fs = require("fs");
 const { parse, writeToPath } = require("fast-csv");
 
 // CONFIGURAÇÕES
-const NOME_DO_ARQUIVO = 'dados.csv' 
+const NOME_DO_ARQUIVO = 'CNPJS_ColunaDireita.csv' // Esquerda cmd de baixo
 
 const lerCsv = () => {
   return new Promise((resolve, reject) => {
     const dados = [];
     const CAMINHO_ARQUIVO = path.resolve(__dirname, `./excel/${NOME_DO_ARQUIVO}`);
     fs.createReadStream(CAMINHO_ARQUIVO)
-      .pipe(parse({ headers: true, delimiter: ';' }))
+      .pipe(parse({ headers: true, delimiter: ',' }))
       .on('error', error => reject(error))
       .on('data', row => dados.push(row))
       .on('end', () => resolve(dados));
@@ -20,7 +20,7 @@ const lerCsv = () => {
 const SalvarCSV = (dados) => {
   return new Promise((resolve, reject) => {
     const CAMINHO_ARQUIVO = path.resolve(__dirname, `./excel/${NOME_DO_ARQUIVO}`);
-    writeToPath(CAMINHO_ARQUIVO, dados, { headers: true, delimiter: ';' }) 
+    writeToPath(CAMINHO_ARQUIVO, dados, { headers: true, delimiter: ',' }) 
       .on('error', err => reject(err))
       .on('finish', () => resolve());
   });
@@ -32,7 +32,7 @@ const SalvarCSV = (dados) => {
         const DadosCSV = await lerCsv();
 
      
-        const listaPendentes = DadosCSV.filter(linha => linha.status !== 'SIM');
+        const listaPendentes = DadosCSV.filter(linha => linha.status !== 'SIM' && linha.status !== 'NÃO' && linha.status !== 'CNPJ não encontrado');
 
         console.log(`📊 Relatório Inicial:`);
         console.log(`   - Total no arquivo: ${DadosCSV.length}`);
@@ -82,11 +82,14 @@ const SalvarCSV = (dados) => {
                     }
                 } else {
                     console.log(`   ❌ ${res.linhaObj.cnpj}: Falhou - ${res.erro}`);
+                    if(res.erro == 'HTTP 403'){
+                        res.linhaObj.status = `CNPJ não encontrado`;
+                    }
                     res.linhaObj.status = `ERRO: ${res.erro}`;
                 }
             });
 
-            await new Promise(r => setTimeout(r, 1000));
+            await new Promise(r => setTimeout(r, 2000));  
         }
         
         console.log("\n💾 Salvando arquivo final (com todas as linhas)...");
