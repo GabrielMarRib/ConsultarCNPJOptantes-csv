@@ -1,7 +1,7 @@
 {
   "name": "cnpjoptantes",
   "version": "1.0.0",
-  "description": "",
+  "description": "Bot para consultar optantes do Simples Nacional",
   "homepage": "https://github.com/GabrielMarRib/ConsultarCNPJOptantes-csv#readme",
   "bugs": {
     "url": "https://github.com/GabrielMarRib/ConsultarCNPJOptantes-csv/issues"
@@ -13,12 +13,41 @@
   "license": "ISC",
   "author": "Gabriel MR",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node main.js"
+    "start": "electron .",
+    "dist": "electron-builder"
   },
   "dependencies": {
     "fast-csv": "^5.0.5"
+  },
+  "devDependencies": {
+    "electron-builder": "^26.4.0",
+    "electron": "^40.0.0"
+  },
+  "build": {
+    "appId": "com.gabrielmr.cnpjoptantes",
+    "productName": "Bot CNPJ Optantes",
+    "win": {
+      "target": "nsis",
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    },
+    "files": [
+      "**/*",
+      "!excel/*"
+    ],
+    "extraFiles": [
+      {
+        "from": "excel",
+        "to": "excel",
+        "filter": ["**/*"]
+      }
+    ]
   }
 }

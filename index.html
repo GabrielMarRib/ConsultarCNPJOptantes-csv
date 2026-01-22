@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>By Gabriel M.R</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f4f4; padding: 20px; }
+        .controles { display: flex; gap: 10px; margin-bottom: 20px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; border: none; border-radius: 5px; color: white; transition: 0.3s; }
+        #btnIniciar { background-color: #28a745; }
+        #btnIniciar:hover { background-color: #218838; }
+        #btnIniciar:disabled { background-color: #ccc; cursor: not-allowed; }
+        
+        #btnParar { background-color: #dc3545; }
+        #btnParar:hover { background-color: #c82333; }
+
+        #logs { 
+            background: #1e1e1e; color: #00ff00; 
+            padding: 15px; height: 400px; 
+            overflow-y: scroll; border-radius: 5px; 
+            font-family: monospace; white-space: pre-wrap;
+        }
+        .controles #div-csv{
+            display: flex;
+            flex-direction: column; 
+        }
+        .controles #div-csv p{
+            margin: 0;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📊 Verificador de Simples Nacional</h1>
+    
+    <div class="controles">
+        <button id="btnIniciar">▶ Iniciar</button>
+        <button id="btnParar">⏹ Parar</button>
+        <div id="div-csv">
+            <p>Nome do arquivo (.csv)*</p>
+            <input type="text" placeholder="Ex: PlanilhaDados" id="CSV" >
+        </div>
+    </div>
+
+    <div id="logs">Aguardando comando...</div>
+
+    <script src="./renderer.js"></script>
+</body>
+</html>

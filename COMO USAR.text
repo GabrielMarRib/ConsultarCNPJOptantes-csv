@@ -1,0 +1,29 @@
+Beleza Dinho, esse é um verificador de simples nacional basico. 
+Esse verificador usa de uma API publica gratuita, portanto á um limite de requisições (pesquisa por CNPJ) que 
+você pode fazer. (API em questão : https://opencnpj.org/)
+Mas relaxe, use por quanto tempo você quiser e se começar a dar erro repetidamente você faz uma pausa.
+
+------ COMO USAR -----
+Na pasta excel, você deve deixar um arquivo .csv !
+Caso seu arquivo seja o padrão .xlsx ou .xlsb converta para .csv (pois é um tipo de arquivo mais leve e facil de trabalhar)
+Recomendo esse site para converção: https://convertio.co/pt/xlsx-csv/
+
+   -------
+Já o arquivo do excel, ele deve estar no seguinte padrão:
+
++-------------------------------+
+|     cnpj     |     status     |
+|--------------------------------
+|  XXXXXXXXXX  |                |
+|  XXXXXXXXXX  |                |
+|  XXXXXXXXXX  |                |
+|  XXXXXXXXXX  |                |
+|  XXXXXXXXXX  |                |
+|  XXXXXXXXXX  |                |
+|    .....     |                |
++--------------------------------+
+
+1. Deve haver somente duas colunas e no topo delas tem que estar escrito cnpj(minusculo) e status (tambem em minusculo).
+2. O restante das colunas não vão ser lidos.
+3. Não pode rodar a automação com a planilha aberta em outro lugar (se não corrompe o arquivo)
+4. Não pode rodar a automação duas vezes no mesmo arquivo
